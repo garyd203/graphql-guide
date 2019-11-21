@@ -4,7 +4,7 @@ A hype-free guide to GraphQL for server-side developers, with a touch of snark
 ## Introduction
 
 ### What is GraphQL
-GraphQL is a new RPC system. That is, it is in the same category as REST, Webservices/SOAP, gRPC and CORBA.
+GraphQL is a new RPC system. That is, it is in the same category as REST, Webservices/SOAP, gRPC, XML-RPC and CORBA.
 
 ### Advantages
 The key distinctive of GraphQL is that it gives the API client fine-grained control over the fields returned from an API call (the data shape). This addresses a number of issues around over-requesting, that are present in most other RPC systems.
