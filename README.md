@@ -15,7 +15,7 @@ GraphQL is not a mature technology. A number of operational and development cons
 ## Requests
 
 ### Network Protocol
-Requests are implemented as a text body in a HTTP(S) POST to a single URL (it is aldso possible, but unwise, to use HTTP GET with a URL-encoded GraphQL request). Responses always have HTTP status code 200.
+Requests are implemented as a text body in a HTTP(S) POST to a single URL (it is also possible, but unwise, to use HTTP GET with a URL-encoded GraphQL request). Responses always have HTTP status code 200.
 
 ### Operations
 There are 3 types of request (called "operations"). Functionally, here's what they mean
@@ -26,3 +26,5 @@ There are 3 types of request (called "operations"). Functionally, here's what th
 
 ### Errors
 Over the wire, responses always have HTTP status code 200, even if there was a functional error. However, GraphQL clients should also be prepared to handle HTTP 500 (for catastrophic server errors) and network errors.
+
+There is an unofficial extension for embedding error information into the graphql response (Apollo error format). There is a further extension-extension for embedding error codes into the error information for programmatic error handling (`error_code` field). However, there are no extension-extension-extension's for well-defined error codes or annotating your schema to indicate valid error codes for particular fields or operations
