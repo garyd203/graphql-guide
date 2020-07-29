@@ -28,3 +28,16 @@ There are 3 types of request (called "operations"). Functionally, here's what th
 Over the wire, responses always have HTTP status code 200, even if there was a functional error. However, GraphQL clients should also be prepared to handle HTTP 500 (for catastrophic server errors) and network errors.
 
 There is an unofficial extension for embedding error information into the graphql response (Apollo error format). There is a further extension-extension for embedding error codes into the error information for programmatic error handling (`error_code` field). However, there are no extension-extension-extension's for well-defined error codes or annotating your schema to indicate valid error codes for particular fields or operations
+
+## Types
+
+### Gotchas
+* input types (`input`) are different from return types (`type`). This is a bad idea.
+* input types have a lot of limitations. No good reason, just cause.
+* Interfaces don't add much value - you still need to repeat the itnerface fields in the concrete type . It's worth noting that every graphql type is an interface (strictly speaking)
+* Unions cause a lot of problems. They reflect bad API design, they require confusing queries, and they generate bad code both client-side and server-side
+
+### Deprecation
+* Use an annotation to do deprecation for fields on output types
+* You can't deprecate fields on an `input` type.
+
