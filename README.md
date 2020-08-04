@@ -12,6 +12,16 @@ The key distinctive of GraphQL is that it gives the API client fine-grained cont
 ### Disadvantages
 GraphQL is not a mature technology. A number of operational and development considerations are not adequately addressed at the moment (as of late 2019).
 
+## Community
+
+### Context
+The GraphQL movement is actually 3 things:
+1. The internal communication protocol for a specific technology stack (Apollo/Relay).
+2. A reaction against some of the more onerous aspects of the dominant RESTful approach to implementing API's, with it's roots in a specific part of the software engineering community.
+3. A tool for creating flexible general-purpose API's.
+
+It is helpful to remember this context because whilst a lot of the online discussion about GraphQL appears to be about point 3 (GraphQL as an API technology), in reality it is often about points 1 or 2. I suspect sometimes the authors are not clear on this distinction either :-/
+
 ## Requests
 
 ### Network Protocol
