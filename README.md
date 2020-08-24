@@ -25,7 +25,7 @@ It is helpful to remember this context because whilst a lot of the online discus
 ## Requests
 
 ### Network Protocol
-Requests are implemented as a text body in a HTTP(S) POST to a single URL (it is also possible, but unwise, to use HTTP GET with a URL-encoded GraphQL request). Responses always have HTTP status code 200.
+Requests are implemented as a text body in a HTTP(S) POST to a single URL (it is also possible, but unwise, to use HTTP GET with a URL-encoded GraphQL request). Responses usually have HTTP status code 200, but some servers may use a HTTP status of 400 for some errors.
 
 ### Operations
 There are 3 types of request (called "operations"). Functionally, here's what they mean
@@ -35,7 +35,9 @@ There are 3 types of request (called "operations"). Functionally, here's what th
 3. "subscription": Function call with parameters, structured response with server-push streaming data
 
 ### Errors
-Over the wire, responses always have HTTP status code 200, even if there was a functional error. However, GraphQL clients should also be prepared to handle HTTP 500 (for catastrophic server errors) and network errors.
+Over the wire, responses usually have HTTP status code 200, even if there was a functional error. As-of 2020, there is also a trend to use HTTP status code 400 if there was an error resolving any field in the response (although the remainder of the response would still be returned as per normal semantics). Note that GraphQL clients should also be prepared to handle HTTP status code 500 (for catastrophic server errors), along with network errors.
+
+The approach of using HTTP 400 for any field errors needs to be be discussed in a bit more detail. It has the advantage of utilising the builtin status-code error handling in the HTTP clients that every GraphQL client is built on, so that errors can be guaranteed to result in a client-side error - rather than having a badly written client blindly rely on incomplete data, for instance. However, the disadvantage is that detailed error handling is discarded in favour of an all-or-nothing status code (eg. there is no distinction between bad query structure, a missing object, and an internal timeout fetching data - let alone partial data responses). My opinion is that if you are going to create a network-protocol-independent API system, then it doesn't make sense to partially break that paradigm for the sake of misbehaving client-side code - so it seems wisest to avoid this pattern.
 
 There is an unofficial extension for embedding error information into the graphql response (Apollo error format). There is a further extension-extension for embedding error codes into the error information for programmatic error handling (`error_code` field). However, there are no extension-extension-extension's for well-defined error codes or annotating your schema to indicate valid error codes for particular fields or operations
 
