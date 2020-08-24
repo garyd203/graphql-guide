@@ -10,7 +10,7 @@ GraphQL is a new RPC system. That is, it is in the same category as REST, Webser
 The key distinctive of GraphQL is that it gives the API client fine-grained control over the fields returned from an API call (the data shape). This addresses a number of issues around over-requesting, that are present in most other RPC systems.
 
 ### Disadvantages
-GraphQL is not a mature technology. A number of operational and development considerations are not adequately addressed at the moment (as of late 2019).
+GraphQL is not a mature technology for general-purpose use. A number of operational and development considerations are not adequately addressed at the moment (as of late 2019).
 
 ## Community
 
@@ -44,10 +44,15 @@ There is an unofficial extension for embedding error information into the graphq
 ### Gotchas
 * input types (`input`) are different from return types (`type`). This is a bad idea.
 * input types have a lot of limitations. No good reason, just cause.
-* Interfaces don't add much value - you still need to repeat the itnerface fields in the concrete type . It's worth noting that every graphql type is an interface (strictly speaking)
-* Unions cause a lot of problems. They reflect bad API design, they require confusing queries, and they generate bad code both client-side and server-side
+* Interfaces don't add much value - you still need to repeat the interface fields in the concrete type . It's worth noting that every graphql type is an interface (strictly speaking)
+* Unions cause a lot of problems. They reflect bad API design, they require confusing queries, and they generate bad code on both client-side and server-side
 
 ### Deprecation
 * Use an annotation to do deprecation for fields on output types
-* You can't deprecate fields on an `input` type.
+* You can't deprecate fields on an `input` type (!)
 
+## About Me
+I have been a professional ("paid") software developer for about 2 decades now. I have created and maintained general-purpose GraphQL API's in production.
+Previously I have had extensive experience with RESTful API's, and before that Webservices/SOAP, JSON-RPC, ICE, XML-RPC, CORBA and so on.
+
+Consequently I can give you some good reasons why SOAP in particular was a mess and why the RESTful movement was revolutionary in that context. Of course, nobody needs to know or understand this in order to benefit from GraphQL - but it provides me with the clarity and perspective to find the good in a movement that consciously rejects REST, whilst avoiding the pitfalls of history.
