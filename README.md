@@ -53,6 +53,13 @@ There is an unofficial extension for embedding error information into the graphq
 * Use an annotation to do deprecation for fields on output types
 * You can't deprecate fields on an `input` type (!)
 
+## API Design
+
+### Guidelines
+
+### General hints
+* Use the graph structure
+
 ## About Me
 I have been a professional ("paid") software developer for about 2 decades now. I have created and maintained general-purpose GraphQL API's in production.
 Previously I have had extensive experience with RESTful API's, and before that Webservices/SOAP, JSON-RPC, ICE, XML-RPC, CORBA and so on.
