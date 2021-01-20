@@ -45,8 +45,8 @@ There is an unofficial extension for embedding error information into the graphq
 
 ### Gotchas
 * input types (`input`) are different from return types (`type`). This is a bad idea.
-* input types have a lot of limitations. No good reason, just cause.
-* Interfaces don't add much value - you still need to repeat the interface fields in the concrete type . It's worth noting that every graphql type is an interface (strictly speaking)
+* input types have a lot of limitations. No good reason, just 'cause.
+* Interfaces don't add much value - you still need to repeat the interface fields in the concrete type. It is worth noting that every graphql type is an interface (strictly speaking)
 * Unions cause a lot of problems. They reflect bad API design, they require confusing queries, and they generate bad code on both client-side and server-side
 
 ### Deprecation
