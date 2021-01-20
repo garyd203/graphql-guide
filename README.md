@@ -28,11 +28,11 @@ It is helpful to remember this context because whilst a lot of the online discus
 Requests are implemented as a text body in a HTTP(S) POST to a single URL (it is also possible, but unwise, to use HTTP GET with a URL-encoded GraphQL request). Responses usually have HTTP status code 200, but some servers may use a HTTP status of 400 for some errors.
 
 ### Operations
-There are 3 types of request (called "operations"). Functionally, here's what they mean
+There are 3 types of request (called "operations"). Each operation type has an associated semantic meaning, but that is largely irrelevant (there is no enforcement of these semantics at the specification-level, and very little tooling appears to utilise it) so you can just ignore it and remix the operations to suit your own semantics based on their defined behaviour.
 
-1. "query": Function call with parameters, parallel execution, structured response
-2. "mutation": Function call with parameters, blocking sequential execution, structured response
-3. "subscription": Function call with parameters, structured response with server-push streaming data
+1. "query": Function call with parameters, parallel execution, structured response. Semantically intended for read-only data querying.
+2. "mutation": Function call with parameters, blocking sequential execution, structured response. Semantically intended for data writes (create/update/delete).
+3. "subscription": Function call with parameters, structured response with server-push streaming data. Semantically intended for long-timespan read-only data streaming.
 
 ### Errors
 Over the wire, responses usually have HTTP status code 200, even if there was a functional error. As-of 2020, there is also a trend to use HTTP status code 400 if there was an error resolving any field in the response (although the remainder of the response would still be returned as per normal semantics). Note that GraphQL clients should also be prepared to handle HTTP status code 500 (for catastrophic server errors), along with network errors.
