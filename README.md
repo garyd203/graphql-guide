@@ -59,6 +59,7 @@ There is an unofficial extension for embedding error information into the graphq
 
 ### General hints
 * Use the graph structure
+* Schema design makes or breaks your API. You should be manually designing your schema and actively managing it on an ongoing basis. Schema-first server tools are the best way to achieve this (ie. define the GraphQL schema manually as the first step).
 
 ## About Me
 I have been a professional ("paid") software developer for about 2 decades now. I have created and maintained general-purpose GraphQL API's in production.
