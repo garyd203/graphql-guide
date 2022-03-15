@@ -10,7 +10,7 @@ GraphQL is a new RPC system. That is, it is in the same category as REST, Webser
 The key distinctive of GraphQL is that it gives the API client fine-grained control over the fields returned from an API call (the data shape). This addresses a number of issues around over-requesting, that are present in most other RPC systems.
 
 ### Disadvantages
-GraphQL is not a mature technology for general-purpose use. A number of operational and development considerations are not adequately addressed at the moment (as of late 2019).
+GraphQL is not a mature technology for use in a general-purpose API. A number of operational and development considerations are not consistently implemented at the moment (as of early 2022) - notably wire protocol and error handling.
 
 ## Community
 
