@@ -17,7 +17,7 @@ GraphQL is not a mature technology for use in a general-purpose API. A number of
 ### Context
 The GraphQL movement is actually 3 things:
 1. The internal communication protocol for a specific technology stack (Apollo/Relay).
-2. A reaction against some of the more onerous aspects of the dominant RESTful approach to implementing API's, with it's roots in a specific part of the software engineering community.
+2. A reaction against some of the more onerous aspects of the dominant RESTful approach to implementing API's, with its roots in a specific part of the software engineering community.
 3. A tool for creating flexible general-purpose API's.
 
 It is helpful to remember this context because whilst a lot of the online discussion about GraphQL appears to be about point 3 (GraphQL as an API technology), in reality it is often about points 1 or 2. I suspect sometimes the authors are not clear on this distinction either :-/
@@ -37,7 +37,7 @@ There are 3 types of request (called "operations"). Each operation type has an a
 ### Errors
 Over the wire, responses usually have HTTP status code 200, even if there was a functional error. As-of 2020, there is also a trend to use HTTP status code 400 if there was an error resolving any field in the response (although the remainder of the response would still be returned as per normal semantics). Note that GraphQL clients should also be prepared to handle HTTP status code 500 (for catastrophic server errors), along with network errors.
 
-The approach of using HTTP 400 for any field errors needs to be be discussed in a bit more detail. It has the advantage of utilising the builtin status-code error handling in the HTTP clients that every GraphQL client is built on, so that errors can be guaranteed to result in a client-side error - rather than having a badly written client blindly rely on incomplete data, for instance. However, the disadvantage is that detailed error handling is discarded in favour of an all-or-nothing status code (eg. there is no distinction between bad query structure, a missing object, and an internal timeout fetching data - let alone partial data responses). My opinion is that if you are going to create a network-protocol-independent API system, then it doesn't make sense to partially break that paradigm for the sake of misbehaving client-side code - so it seems wisest to avoid this pattern.
+The approach of using HTTP 400 for any field errors needs to be discussed in a bit more detail. It has the advantage of utilising the builtin status-code error handling in the HTTP clients that every GraphQL client is built on, so that errors can be guaranteed to result in a client-side error - rather than having a badly written client blindly rely on incomplete data, for instance. However, the disadvantage is that detailed error handling is discarded in favour of an all-or-nothing status code (eg. there is no distinction between bad query structure, a missing object, and an internal timeout fetching data - let alone partial data responses). My opinion is that if you are going to create a network-protocol-independent API system, then it doesn't make sense to partially break that paradigm for the sake of misbehaving client-side code - so it seems wisest to avoid this pattern.
 
 There is an unofficial extension for embedding error information into the graphql response (Apollo error format). There is a further extension-extension for embedding error codes into the error information for programmatic error handling (`error_code` field). However, there are no extension-extension-extension's for well-defined error codes or annotating your schema to indicate valid error codes for particular fields or operations
 
@@ -45,17 +45,20 @@ There is an unofficial extension for embedding error information into the graphq
 
 ### Gotchas
 * input types (`input`) are different from return types (`type`). This is a bad idea.
-* input types have a lot of limitations. No good reason, just 'cause.
-* Interfaces don't add much value - you still need to repeat the interface fields in the concrete type. It is worth noting that every graphql type is an interface (strictly speaking)
+* input types have a bunch of limitations. No good reason, just 'cause.
+* Interfaces don't add much value - you still need to repeat the interface fields in the concrete type. From a terminology point of view, it is worth noting that every graphql type is a software interface (strictly speaking)
 * Unions cause a lot of problems. They reflect bad API design, they require confusing queries, and they generate bad code on both client-side and server-side
 
 ### Deprecation
 * Use an annotation to do deprecation for fields on output types
-* You can't deprecate fields on an `input` type (!)
+* You can't deprecate fields on an `input` type (!). However, you can at least highlight their deprecated nature in a comment
+* You can't deprecate a parameter.
 
 ## API Design
 
 ### Guidelines
+
+* Always use a structured type for input arguments, don't use raw parameters. This will give you a lot more flexibility to change the function signature in a backward-comaptible way.
 
 ### General hints
 * Use the graph structure. It can reflect the semantic hierarchy present in your data (including nesting and loops), and implicitly scopes the returned data.
